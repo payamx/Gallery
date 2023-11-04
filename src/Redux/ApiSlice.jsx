@@ -1,12 +1,11 @@
 import {createSlice, createAsyncThunk, configureStore} from '@reduxjs/toolkit';
 import axios from 'axios';
+import {axiosClient} from "../Axios.js";
 
 export const fetchApiData =  createAsyncThunk('api/fetchData',async (page) => {
-    const accesskey = 'qBERv54ET37AgBbC-h8dP01Jo-9PYTU_8__Y9vgnuUQ';
         // console.error(page,"async page ")
-    const response = await axios.get('https://api.unsplash.com/collections/', {
+    const response = await axiosClient.get('/collections', {
         params: {
-            client_id: accesskey,
             page: page,
             per_page: 8,
         },

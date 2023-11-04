@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import CardList from "../Componnent/CardList.jsx";
+import UserInfo from "../Componnent/UserInfo.jsx";
 
 
 const Home = () => {
@@ -7,8 +8,9 @@ const Home = () => {
 
     return (
         <div >
-            <CardList/>
+            <UserInfo/>
 
+            <CardList/>
         </div>
     );
 };

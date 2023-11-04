@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import debounce from 'lodash.debounce';
 import {fetchApiData} from "../Redux/ApiSlice.jsx";
 import {CardGrid} from "./CardGrid.jsx";
+import {fetchUser} from "../Redux/UserSlice.jsx";
 
 
 const CardList = () => {
@@ -10,11 +11,12 @@ const CardList = () => {
     const {data, page, isLoading, error} = useSelector((state) => state.api);
 
     console.log(data, 'response data');
-    console.log(page, 'page number');
+    // console.log(page, 'page number');
 
     useEffect(() => {
         dispatch(fetchApiData(page));
-    }, [dispatch]); // Include dispatch as a dependency
+
+    }, []); // Include dispatch as a dependency
 
     const dispatchFunction = (page) => {
         dispatch(fetchApiData(page));

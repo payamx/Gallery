@@ -1,7 +1,7 @@
-import {useState} from "react";
-import debounce from "lodash.debounce";
+import { useState} from "react";
 
 export const CardGrid = ({images}) => {
+
     const maxGridItems = 3;
     const renderGridItems = () => {
 
@@ -17,10 +17,10 @@ export const CardGrid = ({images}) => {
         };
 
         const openModal = () => {
-            setTimeout(()=>     setShowModal(true),600)
+            setTimeout(() => setShowModal(true), 600)
         };
         const closeModal = () => {
-            setTimeout(()=> setShowModal(false),500)
+            setTimeout(() => setShowModal(false), 500)
 
         };
         const grids = [];
@@ -36,7 +36,6 @@ export const CardGrid = ({images}) => {
 
                 const isHoverd = hoverIndex === index
                 currentGrid.push(
-
                     <div key={index} className="  w-full my-2 p-2 break-inside-avoid"
                          onMouseOver={() => onHover(index)}
                          onMouseOut={onHoverOver}>
@@ -58,13 +57,15 @@ export const CardGrid = ({images}) => {
                                     </div>
 
 
-                                    <div className="flex justify-between items-center m-3 absolute bottom-0  right-0 left-0  ">
+                                    <div
+                                        className="flex justify-between items-center m-3 absolute bottom-0  right-0 left-0  ">
 
 
                                         {/*profile image and username*/}
 
                                         <div className="text-white text-center flex items-center justify-between ">
-                                            <img src={profileImage} alt="Profile" onMouseEnter={openModal} onMouseOut={closeModal}
+                                            <img src={profileImage} alt="Profile" onMouseEnter={openModal}
+                                                 onMouseOut={closeModal}
                                                  className="inline-block h-12 w-12 rounded-full m-1"/>
                                             <div className="text-start">
                                                 <span className="text-sm inline-block text-start">{userName}</span>
@@ -73,7 +74,7 @@ export const CardGrid = ({images}) => {
                                                           <span className="text-sm block ">
                                                                   Available for hire
                                                                   <img src="/correctwhite.svg"
-                                                                      className="inline-block h-6 w-6 ml-1 rounded-full   "/>
+                                                                       className="inline-block h-6 w-6 ml-1 rounded-full   "/>
                                                                 </span>
                                                       )}
                                                 </span>
@@ -91,21 +92,39 @@ export const CardGrid = ({images}) => {
                                 </div>
                             }
                             {isHoverd && showModal && (
-                                <div className=" absolute   left-14 bottom-0  bottom-20   flex  items-center justify-center bg-white text-dark  ">
-                                    <div className="   ">
-                                        <div className=" text-center flex items-center justify-between pe-8 ">
-                                            <img src={profileImage} alt="Profile" className="inline-block h-12 w-12 rounded-full m-2"/>
-                                            <div className="text-start">
-                                                <span className="text-sm block text-start font-bold">{firstName} {lastName}</span>
 
-                                                <span className="text-sm block text-start">{userName}</span>
+                                <div className=" absolute   left-14 bottom-0  bottom-20       bg-white text-dark rounded-xl ">
+                                    <div className="  flex items-center justify-between pe-4 ">
 
+                                        <div className=" text-center flex items-center justify-between pe-8  ">
+                                            <div className="  flex items-center justify-between  ">
+                                                <img src={profileImage} alt="Profile"
+                                                     className="inline-block h-12 w-12 rounded-full m-2"/>
+                                                    <div className="text-start ">
+                                                        <span
+                                                            className=" block text-start font-bold">{firstName} {lastName}</span>
+                                                        <span className=" block text-start">{userName}</span>
+                                                    </div>
                                             </div>
 
                                         </div>
-
+                                        <button
+                                            className=" text-white inline text-start p-2   bg-sky-600 rounded-md"> Hire!
+                                        </button>
 
                                     </div>
+                                    <div className="">
+                                        <img src={image.urls.thumb}
+                                             alt={image.slug}
+                                             className="  rounded w-20 h-20 p-2 pb-0"/>
+                                    </div>
+                                    <div className="text-center p-3  text-white">
+                                        <a href={userName} target="_blank">
+                                            <button  className="px-20 py-2 m-2 text-center  rounded-md bg-sky-600 "> view profile</button>
+
+                                        </a>
+                                    </div>
+
                                 </div>
 
                             )}
