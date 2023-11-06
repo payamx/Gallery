@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@egjs/grid": "^1.14.2",
     "@reduxjs/toolkit": "^1.9.7",
+    "antd": "^5.11.0",
     "axios": "^1.6.0",
     "lodash.debounce": "^4.0.8",
     "masonry-layout": "^4.2.2",

@@ -1,17 +1,15 @@
 import {createSlice, createAsyncThunk, configureStore} from '@reduxjs/toolkit';
 import {axiosClient} from "../Axios.js";
-import axios from "axios";
-import {useEffect} from "react";
 
-export const fetchUser =  createAsyncThunk('api/userData',async (username) => {
-    const response = await axiosClient.get(`users/${username}`);
-    // console.log(response,"userslice data")
+export const fetchUserPhotos =  createAsyncThunk('api/UserPhotos',async (username) => {
+    const response = await axiosClient.get(`users/${username}/photos`);
+    console.log(response,"user photos slice ")
     return response.data ;
 
 });
 
-export const userSlice = createSlice({
-    name: 'user',
+export const userPhotosSlice = createSlice({
+    name: 'userPhotos',
     initialState: {
         data: [],
         isLoading: false,
@@ -20,19 +18,19 @@ export const userSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchUser.pending, (state) => {
+            .addCase(fetchUserPhotos.pending, (state) => {
                 state.isLoading = true;
                 state.error = null;
             })
-            .addCase(fetchUser.fulfilled, (state, action) => {
+            .addCase(fetchUserPhotos.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.data = action.payload;
             })
-            .addCase(fetchUser.rejected, (state, action) => {
+            .addCase(fetchUserPhotos.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.error.message;
             });
     },
 });
 
-export default userSlice.reducer;
+export default userPhotosSlice.reducer;

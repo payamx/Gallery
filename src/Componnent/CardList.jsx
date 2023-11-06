@@ -10,7 +10,7 @@ const CardList = () => {
     const dispatch = useDispatch();
     const {data, page, isLoading, error} = useSelector((state) => state.api);
 
-    console.log(data, 'response data');
+    // console.log(data, 'response data');
     // console.log(page, 'page number');
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const CardList = () => {
     };
 
     return (
-        <div className=" container mx-auto">
+        <div className=" container mx-auto ">
 
             {isLoading ? 'is loding' : ''}
             <div className="w-full  my-5 mx-auto xs:columns-1 sm:columns-2 md:columns-3 lg:columns-3 gap-1">

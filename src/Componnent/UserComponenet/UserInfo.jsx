@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {fetchUser} from "../Redux/UserSlice.jsx";
+import {fetchUser} from "../../Redux/UserSlice.jsx";
 import {Link, useParams} from "react-router-dom";
 
 const UserInfo = () => {
@@ -12,7 +12,7 @@ const UserInfo = () => {
         dispatch(fetchUser('jemsahagun'));
 
     }, []);
-    console.log(data)
+    // console.log(data)
     return (
         <div>
             <div className="    md:flex h-full md:justify-center md:p-20 px-2 text-lg">
@@ -87,14 +87,14 @@ const UserInfo = () => {
                 <nav >
                     <ul className="flex space-x-4 p-4 ">
                         <li className="">
-                            <Link to="/wrter">
+                            <Link to="photos">
                                 <img src="/userPhotos.svg" className="inline p-2"/>
                                 <span className="px-1 font-bold hover:text-white">{data?.total_photos}</span>
                                 Photos</Link>
                         </li>
                         <li>
 
-                            <Link to="/blogs">
+                            <Link to="likes">
                                 <img src="/like.svg" className="inline p-2"/>
                                 <span className="px-1 font-bold">{data?.total_likes}</span>
 
@@ -103,15 +103,17 @@ const UserInfo = () => {
                         <li>
 
 
-                            <Link to="/contact">
+                            <Link to="collection">
                                 <img src="/collection.svg" className="inline p-2"/>
                                 <span className="px-1 font-bold">{data?.total_collections}</span>
                                 Collection</Link>
                         </li>
                     </ul>
                 </nav>
-            </div>
 
+            </div>
+            <div className=""></div>
+            <hr/>
         </div>
 
     );

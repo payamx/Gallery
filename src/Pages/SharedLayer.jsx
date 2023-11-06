@@ -3,11 +3,12 @@ import Home from "./Home.jsx";
 import Footer from "../Componnent/Footer.jsx";
 import Navbar from "../Componnent/Navbar.jsx";
 import {Outlet} from "react-router-dom";
+import Header from "./Header.jsx";
 
 const SharedLayer = () => {
     return (
         <div>
-            <Navbar/>
+            <Header/>
             <Outlet/>
             <Footer/>
         </div>

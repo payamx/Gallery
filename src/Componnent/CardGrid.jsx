@@ -1,4 +1,5 @@
 import { useState} from "react";
+import {Link} from "react-router-dom";
 
 export const CardGrid = ({images}) => {
 
@@ -17,10 +18,10 @@ export const CardGrid = ({images}) => {
         };
 
         const openModal = () => {
-            setTimeout(() => setShowModal(true), 600)
+            setTimeout(() => setShowModal(true), 800)
         };
         const closeModal = () => {
-            setTimeout(() => setShowModal(false), 500)
+            setTimeout(() => setShowModal(false), 2000)
 
         };
         const grids = [];
@@ -119,10 +120,12 @@ export const CardGrid = ({images}) => {
                                              className="  rounded w-20 h-20 p-2 pb-0"/>
                                     </div>
                                     <div className="text-center p-3  text-white">
-                                        <a href={userName} target="_blank">
+
+                                        <Link to={`/${userName}`} target="_blank" rel="noopener noreferrer">
                                             <button  className="px-20 py-2 m-2 text-center  rounded-md bg-sky-600 "> view profile</button>
 
-                                        </a>
+                                        </Link>
+
                                     </div>
 
                                 </div>
