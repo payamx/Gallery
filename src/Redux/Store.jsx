@@ -9,9 +9,9 @@ export const store = configureStore({
     reducer: {
         api: apiSlice.reducer,
         userData:userSlice.reducer,
-        userPhotos:userPhotosSlice.reducer,
-        userLikes:userPhotoLikesSlice.reducer,
-        userCollection:userPhotoCollectionSlice.reducer,
+        // userPhotos:userPhotosSlice.reducer,
+        // userLikes:userPhotoLikesSlice.reducer,
+        // userCollection:userPhotoCollectionSlice.reducer,
     },
 })
 

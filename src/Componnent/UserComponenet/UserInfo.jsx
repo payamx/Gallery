@@ -2,23 +2,29 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {fetchUser} from "../../Redux/UserSlice.jsx";
 import {Link, useParams} from "react-router-dom";
+import {fetchUserPhotos} from "../../Redux/UserPhotosSlice.jsx";
 
 const UserInfo = () => {
     const profileId = useParams()
-    const {data, isLoading, error} = useSelector((state) => state.userData)
+    const {data, isLoading, error} = useSelector((state) => state.api)
+    const {userinfo,infoLoading,infoError} = useSelector((state) => state.userData)
     const dispatch = useDispatch();
-
+    // console.log(data,"user info")
+    // console.log(profileId,"profile id")
     useEffect(() => {
-        dispatch(fetchUser('jemsahagun'));
+        let memo=true;
+        dispatch(fetchUser(profileId.username));
+        return()=>{memo=false}
 
-    }, []);
+
+    }, [profileId.username]);
     // console.log(data)
     return (
         <div>
-            <div className="    md:flex h-full md:justify-center md:p-20 px-2 text-lg">
+            <div className="md:flex h-full md:justify-center md:p-20 px-2 text-lg">
 
                 <div className=" flex   items-center md:items-start ">
-                    <img src={data?.profile_image?.medium} alt={data?.name}
+                    <img src={userinfo?.profile_image?.medium} alt={userinfo?.name}
                          className=" h-36 w-36 rounded-full md:mx-8 inline-block  "/>
 
                 </div>
@@ -27,7 +33,7 @@ const UserInfo = () => {
 
                     <div className="   ">
                         <div className="inline-flex">
-                            <div className=" text-3xl font-bold ">{data?.name}</div>
+                            <div className=" text-3xl font-bold ">{userinfo?.name}</div>
 
                         </div>
 
@@ -50,8 +56,8 @@ const UserInfo = () => {
 
                         <div className="flex  ">
                             <div className="  flex-col mt-2 justify-start text-start p-1   space-y-2 ">
-                                <p className="">{data?.bio}</p>
-                                {!data?.for_hire && (
+                                <p className="md:max-w-2xl	">{userinfo?.bio}</p>
+                                {!userinfo?.for_hire && (
                                     <span className="text-sm block text-blue-600 text-base">
                             Available for hire
                             <img src="/correctwhite.svg"
@@ -59,19 +65,18 @@ const UserInfo = () => {
                         </span>
                                 )}
                                 <p className="text-zinc-500 inline-block ">
-                                    <img src="/location.svg" className="inline-block"/> {data?.location}</p>
+                                    <img src="/location.svg" className="inline-block"/> {userinfo?.location}</p>
                                 <p className="text-zinc-500">
                                     <img src="/link.svg" className="inline"/>
-                                    Contact With {data?.first_name}
+                                    Contact With {userinfo?.first_name}
                                 </p>
+
                                 <div>Interest</div>
                                 <div className="flex flex-wrap  space-x-1 ">
-                                    {data?.tags?.custom?.map((item,index)=>
+                                    {userinfo?.tags?.custom?.map((item,index)=>
                                         <span key={index} className="  px-2 py-1 rounded-md text-zinc-600 bg-zinc-200 my-1  ">{item?.title}</span>
 
-                                    )
-
-                                    }
+                                    )}
 
                                 </div>
 
@@ -87,16 +92,16 @@ const UserInfo = () => {
                 <nav >
                     <ul className="flex space-x-4 p-4 ">
                         <li className="">
-                            <Link to="photos">
+                            <Link to=""  >
                                 <img src="/userPhotos.svg" className="inline p-2"/>
-                                <span className="px-1 font-bold hover:text-white">{data?.total_photos}</span>
+                                <span className="px-1 font-bold hover:text-white">{userinfo?.total_photos}</span>
                                 Photos</Link>
                         </li>
                         <li>
 
                             <Link to="likes">
                                 <img src="/like.svg" className="inline p-2"/>
-                                <span className="px-1 font-bold">{data?.total_likes}</span>
+                                <span className="px-1 font-bold">{userinfo?.total_likes}</span>
 
                                 Likes</Link>
                         </li>
@@ -105,7 +110,7 @@ const UserInfo = () => {
 
                             <Link to="collection">
                                 <img src="/collection.svg" className="inline p-2"/>
-                                <span className="px-1 font-bold">{data?.total_collections}</span>
+                                <span className="px-1 font-bold">{userinfo?.total_collections}</span>
                                 Collection</Link>
                         </li>
                     </ul>

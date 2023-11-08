@@ -4,6 +4,7 @@ import Notification from "./NavbarNotification.jsx";
 import NavbarProfile from "./NavbarProfile.jsx";
 import NavbarNotification from "./NavbarNotification.jsx";
 import NavbarMenu from "./NavbarMenu.jsx";
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
     return (
@@ -11,7 +12,10 @@ const Navbar = () => {
             <div className="flex justify-start items-center  mx-2  " >
 
                 <div className="  w-18 h-18 md:m-2">
-                    <img src="/photos.svg"/>
+                    <Link to="/" >
+                        <img src="/photos.svg"/>
+
+                    </Link>
                 </div>
 
                 <SearchAnt />

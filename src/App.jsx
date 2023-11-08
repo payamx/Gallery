@@ -18,8 +18,8 @@ const App = () => {
                 <Routes>
                     <Route  element={ <SharedLayer/>} >
                         <Route path="/" index  element={<Home/>}/>
-                        <Route path=":userName" element={<ProfileLayout/>}>
-                            <Route path="photos" element={<UserPhotos/>}/>
+                        <Route path=":username" element={<ProfileLayout/>}>
+                            <Route path="" element={<UserPhotos/>}/>
                             <Route path="likes" element={<UserLikes/>}/>
                             <Route path="collection" element={<UserCollection/>}/>
                          </Route>
