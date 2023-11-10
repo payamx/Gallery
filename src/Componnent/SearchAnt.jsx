@@ -1,39 +1,88 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AutoComplete } from 'antd';
-const options = [
-    {
-        value: 'Burns Bay Road',
-    },
-    {
-        value: 'Downing Street',
-    },
-    {
-        value: 'Wall Street',
-    },
-];
+import { useDispatch, useSelector } from 'react-redux';
+import { searchPhotos } from '../Redux/SearchSlice.jsx';
+import debounce from "lodash.debounce";
+import SearchCards from "./SearchCards.jsx";
 
-const onSelect = (data) => {
-    console.log('onSelect', data);
+const { Option } = AutoComplete;
+
+const SearchAnt = () => {
+
+    const [query, setQuery] = useState('');
+    const dispatch = useDispatch();
+    const { data, isLoading, page, error } = useSelector((state) => state.searchPhotos);
+
+
+
+
+    useEffect(() => {
+
+
+        const debounceTimer = setTimeout(() => {
+            dispatch(searchPhotos(query));
+        }, 1500);
+
+        return () => {
+            clearTimeout(debounceTimer);
+        };
+    }, [query]);
+
+    const handleInputChange = (value) => {
+        setQuery(value)
+
+    };
+
+    const handleSelect = (value) => {
+        setQuery(value);
+    };
+
+    const options = [
+        {
+            value: 'Burns Bay Road',
+        },
+        {
+            value: 'Downing Street',
+        },
+        {
+            value: 'Wall Street',
+        },
+    ];
+    const renderOption = (data) => {
+        return (
+
+            data?.results?.flat().map((item) => (
+                <Option key={item.id} value={item.slug}>
+                     { item?.alt_description }
+
+                </Option>
+            ))
+        );
+    };
+
+    console.log(data?.results)
+    return (
+        <>
+            <AutoComplete
+                style={{
+                    flexGrow: 1,
+                    height: 40,
+                    margin: 30,
+                    color: '#71717a',
+                }}
+                value={query}
+                onChange={handleInputChange}
+                onSelect={handleSelect}
+                placeholder="Search high-resolution images"
+                options={options}
+            />
+
+
+
+
+        </>
+
+    );
 };
-const App = () => (
-    <AutoComplete
-        style={{
-            // width: 300,
-            flexGrow:1,
-            height:40,
-            margin:30,
-            color:'#71717a',
 
-        }}
-        options={options}
-        placeholder="search high resolution image "
-        filterOption={(inputValue, option) =>
-            option.value.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1
-
-        }
-        onSearch={(text) => setOptions(getPanelValue(text))}
-
-    />
-);
-
-export default App;
+export default SearchAnt;

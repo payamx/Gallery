@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchListTopics} from "../Redux/ApiSlice.jsx";
 
 
-const NavbarCategory = () => {
+const NavbarTopics = () => {
 
 
     const dispatch = useDispatch();
@@ -18,13 +18,13 @@ const NavbarCategory = () => {
     }, []);
 
 
-    console.log(topics, "topics get")
+    // console.log(topics, "topics get")
 
     return (
 
 
         <div className="flex justify-start items-center m-3  text-zinc-500
-        md:text-2xl font-bold divide-x-2 divide-black overflow-x-auto grow	">
+        md:text-xl font-bold divide-x-2 divide-black overflow-x-auto grow	">
 
             <div className="flex justify-start items-center   space-x-2  ">
                 <Link to={''} className="p-2">Editoral</Link>
@@ -35,7 +35,7 @@ const NavbarCategory = () => {
 
                 {topics?.map((item, index) => (
 
-                    <Link to={`/t/${item?.title}`} key={index}
+                    <Link to={`/t/${item?.slug}`} key={index}
                           className="mx-4 py-4 flex  whitespace-nowrap">{item?.title}</Link>
 
                 ))}
@@ -48,4 +48,4 @@ const NavbarCategory = () => {
     );
 };
 
-export default NavbarCategory;
+export default NavbarTopics;

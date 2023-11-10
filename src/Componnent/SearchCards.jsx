@@ -1,14 +1,11 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import debounce from 'lodash.debounce';
-import {fetchApiData, fetchListTopics} from "../Redux/ApiSlice.jsx";
-import {fetchUser} from "../Redux/UserSlice.jsx";
-import {Popover} from "antd";
+import { useSelector} from "react-redux";
 import {Link} from "react-router-dom";
+import debounce from "lodash.debounce";
+import {Popover} from "antd";
+import {searchPhotos} from "../Redux/SearchSlice.jsx";
 
-
-const CardList = () => {
-    const dispatch = useDispatch();
+const SearchCards = () => {
     const {data, page, isLoading, error,topics} = useSelector((state) => state.api);
 
 //هاور کردن روی عکس و نشون دادن پروفایل
@@ -65,21 +62,6 @@ const CardList = () => {
         </div>;
 
 
-    // console.log(data, 'response data');
-    // console.log(page, 'page number');
-
-    useEffect(() => {
-        let memo=true;
-        dispatch(fetchApiData(page));
-
-            return()=>{ memo=false}
-    }, []); // Include dispatch as a dependency
-    const dispatchFunction = (page) => {
-        dispatch(fetchApiData(page));
-
-    };
-
-
     // Debounce the API request to prevent rapid requests
     const debouncedDispatch = useCallback(debounce(dispatchFunction, 1000), []);
 
@@ -100,7 +82,7 @@ const CardList = () => {
 
         if (scrollTop + windowHeight >= documentHeight - 300) {
             // Use the current page value in the dispatch function
-            dispatch(fetchApiData(page));
+            // dispatch(searchPhotos(page));
         }
     }, 2000);
 
@@ -185,4 +167,4 @@ const CardList = () => {
     );
 };
 
-export default CardList;
+export default SearchCards;

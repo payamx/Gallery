@@ -18,7 +18,8 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                <SearchAnt />
+
+                <SearchBar/>
                 <button className="p-2 border border-zinc-500 text-zinc-500 hidden md:inline mx-1 rounded-xl"> submit a photo</button>
                     <NavbarNotification/>
 

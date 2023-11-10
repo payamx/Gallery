@@ -1,16 +1,15 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import debounce from 'lodash.debounce';
-import {fetchApiData, fetchListTopics} from "../Redux/ApiSlice.jsx";
-import {fetchUser} from "../Redux/UserSlice.jsx";
+import {useDispatch, useSelector} from "react-redux";
+import {Link, useParams} from "react-router-dom";
+import debounce from "lodash.debounce";
 import {Popover} from "antd";
-import {Link} from "react-router-dom";
+import {fetchTopicsPhoto} from "../Redux/UserTopicsSlice.jsx";
 
-
-const CardList = () => {
+const TopicsList = () => {
+    const params = useParams()
     const dispatch = useDispatch();
-    const {data, page, isLoading, error,topics} = useSelector((state) => state.api);
-
+    const {data, page, isLoading, error, topics} = useSelector((state) => state.TopicsList);
+    // console.log(data, "topic list fetch")
 //هاور کردن روی عکس و نشون دادن پروفایل
     const [hoverIndex, setHoverIndex] = useState(null);
 
@@ -21,6 +20,7 @@ const CardList = () => {
     const onHoverOver = () => {
         setHoverIndex(null);
     };
+
     //هاور روی پروفایل و نشون دادن اطلاعات یوزر
     const [open, setOpen] = useState(false);
     const hide = () => {
@@ -55,7 +55,7 @@ const CardList = () => {
             </div>
             <div className="text-center p-3  text-white">
 
-                <Link to={`${username}`} target="_blank" >
+                <Link to={`/t/${username}`}>
                     <button className="px-20 py-2 m-2 text-center  rounded-md bg-blue-500 "> view profile</button>
 
                 </Link>
@@ -69,13 +69,15 @@ const CardList = () => {
     // console.log(page, 'page number');
 
     useEffect(() => {
-        let memo=true;
-        dispatch(fetchApiData(page));
+        let memo = true;
+        dispatch(fetchTopicsPhoto(params.slug));
 
-            return()=>{ memo=false}
-    }, []); // Include dispatch as a dependency
-    const dispatchFunction = (page) => {
-        dispatch(fetchApiData(page));
+        return () => {
+            memo = false
+        }
+    }, [params.slug]); // Include dispatch as a dependency
+    const dispatchFunction = () => {
+        dispatch(fetchTopicsPhoto(params.slug));
 
     };
 
@@ -100,7 +102,7 @@ const CardList = () => {
 
         if (scrollTop + windowHeight >= documentHeight - 300) {
             // Use the current page value in the dispatch function
-            dispatch(fetchApiData(page));
+            dispatch(fetchTopicsPhoto(page));
         }
     }, 2000);
 
@@ -121,7 +123,7 @@ const CardList = () => {
                                 <div key={itemIndex} className="w-full my-3 px-2 break-inside-avoid  relative "
                                      onMouseOver={() => onHover(itemIndex)}
                                      onMouseOut={onHoverOver}>
-                                    <Link to={`/${item?.user?.username}` } target="_blank">
+                                    <Link to={`/${item?.user?.username}`} target="_blank">
                                         <img className=" rounded-xl" src={item?.urls?.regular}/>
                                     </Link>
 
@@ -185,4 +187,4 @@ const CardList = () => {
     );
 };
 
-export default CardList;
+export default TopicsList;

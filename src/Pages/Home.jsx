@@ -5,6 +5,7 @@ import UserPhotos from "../Componnent/UserComponenet/UserPhotos.jsx";
 import UserLikes from "../Componnent/UserComponenet/UserLikes.jsx";
 import UserCollection from "../Componnent/UserComponenet/UserCollection.jsx";
 import Profilelayout from "./ProfileLayout.jsx";
+import SearchCards from "../Componnent/SearchCards.jsx";
 
 
 const Home = () => {
@@ -13,7 +14,6 @@ const Home = () => {
     return (
         <div  className="">
             <CardList/>
-
         </div>
     );
 };

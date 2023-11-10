@@ -6,9 +6,10 @@ import UserPhotos from "./Componnent/UserComponenet/UserPhotos.jsx";
 import UserLikes from "./Componnent/UserComponenet/UserLikes.jsx";
 import UserCollection from "./Componnent/UserComponenet/UserCollection.jsx";
 import ProfileLayout from "./Pages/ProfileLayout.jsx";
+import TopicsList from "./Componnent/TopicsList.jsx";
+import SearchAnt from "./Componnent/SearchAnt.jsx";
 
 const App = () => {
-
 
 
     return (
@@ -18,6 +19,8 @@ const App = () => {
                 <Routes>
                     <Route  element={ <SharedLayer/>} >
                         <Route path="/" index  element={<Home/>}/>
+                        <Route path="/ant" index  element={<SearchAnt/>}/>
+                        <Route path="/t/:slug"   element={<TopicsList/>}/>
                         <Route path=":username" element={<ProfileLayout/>}>
                             <Route path="" element={<UserPhotos/>}/>
                             <Route path="likes" element={<UserLikes/>}/>

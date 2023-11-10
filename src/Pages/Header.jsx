@@ -1,12 +1,12 @@
 import React from 'react';
 import Navbar from "../Componnent/Navbar.jsx";
-import NavbarCategory from "../Componnent/NavbarCategory.jsx";
+import NavbarTopics from "../Componnent/NavbarTopics.jsx";
 
 const Header = () => {
     return (
         <div >
             <Navbar/>
-            <NavbarCategory/>
+            <NavbarTopics/>
             <hr/>
         </div>
     );
