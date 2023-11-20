@@ -1,7 +1,8 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {axiosClient} from "../Axios.js";
 
-export const fetchTopicsPhoto =  createAsyncThunk('topic/topicsPhoto',async (slug) => {
+
+export const fetchTopicsPhoto =  createAsyncThunk('topic/topicsPhoto',async (slug,page) => {
     const response = await axiosClient.get(`topics/${slug}/photos`);
     console.log(response,"Topic slug slice")
     return response.data ;
@@ -26,7 +27,7 @@ export const TopicsList = createSlice({
             .addCase(fetchTopicsPhoto.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.data =[action.payload];
-                state.page =state.page+1;
+                state.page +=1;
 
             })
             .addCase(fetchTopicsPhoto.rejected, (state, action) => {

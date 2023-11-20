@@ -1,21 +1,28 @@
 import React, {useEffect} from 'react';
-import CardList from "../Componnent/CardList.jsx";
-import UserInfo from "../Componnent/UserComponenet/UserInfo.jsx";
-import UserPhotos from "../Componnent/UserComponenet/UserPhotos.jsx";
-import UserLikes from "../Componnent/UserComponenet/UserLikes.jsx";
-import UserCollection from "../Componnent/UserComponenet/UserCollection.jsx";
-import Profilelayout from "./ProfileLayout.jsx";
-import SearchCards from "../Componnent/SearchCards.jsx";
+import Card from "../Componnent/card/Card.jsx";
+import {useDispatch, useSelector} from "react-redux";
+import {ApiData} from "../Redux/ApiSlice.jsx";
+import SinglePhoto from "../Componnent/SinglePhoto.jsx";
+import BannerHome from "../Componnent/card/BannerHome.jsx";
 
 
 const Home = () => {
+    const {data, page, isLoading, error} = useSelector((state) => state.api);
+    const dispatch=useDispatch()
+    const fetch=()=>{
+       return  ApiData(page)
 
+    }
 
     return (
-        <div  className="">
-            <CardList/>
+
+        <div className="container mx-auto">
+            <BannerHome/>
+            <Card data={data} page={page} isLoading={isLoading} error={error} fetch={fetch}/>
         </div>
+
     );
+
 };
 
 export default Home;

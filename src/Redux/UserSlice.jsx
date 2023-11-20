@@ -7,7 +7,7 @@ export const fetchUser =  createAsyncThunk('api/userData',async (username,page) 
     const response = await axiosClient.get(`users/${username}`,{
         params: {
             page: page,
-            per_page: 20,
+            per_page: 10,
         },
     });
     // console.log(response,"userslice data")

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Button, Popover } from 'antd';
 import {useDispatch, useSelector} from "react-redux";
-import {fetchListTopics} from "../Redux/ApiSlice.jsx";
+import {fetchListTopics} from "../../Redux/ApiSlice.jsx";
 const App = () => {
     const [open, setOpen] = useState(false);
 
@@ -14,7 +14,7 @@ const App = () => {
         setOpen(newOpen);
     };
     const content=
-        <div className="flex justify-center items-start m-3 text-xl gap-4 ">
+        <div className="flex-col md:flex justify-start md:justify-center items-start m-3 text-xl gap-4 ">
 
             <div className="px-2 m-1 flex-col space-y-3 space-x-2">
                 <div className="font-bold text-xl">

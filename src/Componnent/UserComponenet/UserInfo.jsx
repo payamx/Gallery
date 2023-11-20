@@ -6,22 +6,19 @@ import {fetchUserPhotos} from "../../Redux/UserPhotosSlice.jsx";
 
 const UserInfo = () => {
     const profileId = useParams()
-    const {data, isLoading, error} = useSelector((state) => state.api)
-    const {userinfo,infoLoading,infoError} = useSelector((state) => state.userData)
+    const {userinfo,infoLoading,infoError} = useSelector((state) => state.userInfo)
     const dispatch = useDispatch();
-    // console.log(data,"user info")
-    // console.log(profileId,"profile id")
+
     useEffect(() => {
         let memo=true;
-        dispatch(fetchUser(profileId.username));
+        dispatch(fetchUser(profileId.username))
         return()=>{memo=false}
 
-
     }, [profileId.username]);
-    // console.log(data)
+
     return (
         <div>
-            <div className="md:flex h-full md:justify-center md:p-20 px-2 text-lg">
+            <div className="md:flex h-full md:justify-center md:p-20 px-2 text-lg my-4">
 
                 <div className=" flex   items-center md:items-start ">
                     <img src={userinfo?.profile_image?.medium} alt={userinfo?.name}
@@ -92,7 +89,7 @@ const UserInfo = () => {
                 <nav >
                     <ul className="flex space-x-4 p-4 ">
                         <li className="">
-                            <Link to=""  >
+                            <Link to="photos"  >
                                 <img src="/userPhotos.svg" className="inline p-2"/>
                                 <span className="px-1 font-bold hover:text-white">{userinfo?.total_photos}</span>
                                 Photos</Link>
