@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import debounce from 'lodash.debounce';
-import {Popover, Spin,Image} from "antd";
+import {Popover, Spin, Image} from "antd";
 import {Link, useNavigate} from "react-router-dom";
 import {Blurhash, BlurhashCanvas} from "react-blurhash";
 import SinglePhoto from "../SinglePhoto.jsx";
@@ -18,11 +18,13 @@ const Card = ({data, page, fetch, isLoading, error, topics, query, username}) =>
     useEffect(() => {
         let memo = true;
         dispatch(fetch());
-        setTimeout(() => setBlur(false), 1500)
+        setTimeout(() => setBlur(false), 2000)
         return () => {
             memo = false
         }
     }, []); // Include dispatch as a dependency
+
+
 
     const dispatchFunction = () => {
         dispatch(fetch())
@@ -121,14 +123,9 @@ const Card = ({data, page, fetch, isLoading, error, topics, query, username}) =>
     return (
         <>
 
-            {isLoading ?  <Spin className="flex justify-center" size={"large"}/> :
-            <div className=" container mx-auto flex  justify-center ">
+            <div className=" container ">
 
-                <div className="flex justify-center mx-auto pb-24">
-
-                </div>
-
-                <div className="w-fit  my-5 mx-auto xs:columns-1 sm:columns-2 md:columns-3 lg:columns-3 gap-1 mb-96">
+                <div className="w-fit  my-5 mx-auto xs:columns-1 sm:columns-2 md:columns-3 lg:columns-3 gap-1 mb-96 ">
                     {data &&
                         data?.flat()?.map((item, itemIndex) => (
 
@@ -210,10 +207,10 @@ const Card = ({data, page, fetch, isLoading, error, topics, query, username}) =>
 
                             </div>
                         ))}
-                </div>
 
+                </div>
+                {isLoading && <Spin className="flex justify-center pb-96" size={"large"}/>}
             </div>
-            }
 
 
         </>

@@ -17,7 +17,7 @@ const CollectionPage = () => {
 
     }, []);
 
-    // console.log(data,"list collection page")
+    console.log(data,"list collection page")
 
     return (
         <div>
