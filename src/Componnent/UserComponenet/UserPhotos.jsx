@@ -6,9 +6,10 @@ import {fetchUserPhotos} from "../../Redux/UserPhotosSlice.jsx";
 
 const UserPhotos = () => {
     const {username}=useParams();
+    const dispatch =useDispatch()
     const {data, page, isLoading, error} = useSelector((state) => state.userPhotos);
     const fetch=( )=>{
-        return  fetchUserPhotos(username ,page)
+        return  fetchUserPhotos({username:username,page: page})
 
     }
 

@@ -12,10 +12,12 @@ const SearchPhotosCollection = () => {
     const {colData, page, isLoading, error} = useSelector((state) => state.searchPhotos);
     const dispatch = useDispatch();
 
-
+const fetch=()=>{
+    return searchCollections({query:query, page:page})
+}
     useEffect(() => {
         let memo = true
-        dispatch(searchCollections(query))
+        dispatch(searchCollections({query:query, page:page}))
 
         return () => {
             memo = false
@@ -23,11 +25,11 @@ const SearchPhotosCollection = () => {
     }, [query]);
 
 
-    console.log(colData,"collection")
+    // console.log(colData,"collection")
     return (
         <div className="container mx-auto">
             <SearchTag query={query} data={colData} name='collections'/>
-            <Collection data={colData?.results}/>
+            <Collection data={colData?.results} page={page} fetch={fetch}/>
 
         </div>
 

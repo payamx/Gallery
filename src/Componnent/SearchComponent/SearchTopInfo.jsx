@@ -1,14 +1,8 @@
 import React, {useState} from 'react';
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {Select} from "antd";
-import {data} from "autoprefixer";
-import {useSelector} from "react-redux";
-
 const SearchTopInfo = () => {
-    const {data, error, isLoading} = useSelector(state => state.searchPhotos)
     const {query} = useParams()
     const navigate = useNavigate()
-    console.log(data, "search top info")
     return (
         <div className="m-2">
             <div className="md:flex justify-between items-center ">

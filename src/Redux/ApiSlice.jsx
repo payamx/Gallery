@@ -7,10 +7,12 @@ export const ApiData = createAsyncThunk('api/fetchData', async (page) => {
     const response = await axiosClient.get('/photos', {
         params: {
             page: page,
-            per_page: 20,
+            per_page: 10,
         },
     });
-    console.log(response.data,"api")
+
+    // console.log(response.data,"api")
+    // console.log(page,"my page")
     return response.data;
 
 });
@@ -43,7 +45,7 @@ export const apiSlice = createSlice({
 
             .addCase(ApiData.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.data = [...state.data, ...action.payload];
+                state.data = [...state.data, action.payload];
                 state.page += 1;
             })
 

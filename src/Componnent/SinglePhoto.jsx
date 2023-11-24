@@ -1,28 +1,30 @@
-import React from 'react';
-import { Image } from 'antd';
+import React, { useState } from 'react';
+import { Image, Carousel } from 'antd';
 
-const SinglePhoto = () => {
+const CarouselWithButtons = ({ images }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
 
+    const goToNextSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    };
 
+    const goToPrevSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    };
 
     return (
-
         <div>
-            <Image.PreviewGroup
-                items={[
-                    'https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp',
-                    'https://gw.alipayobjects.com/zos/antfincdn/cV16ZqzMjW/photo-1473091540282-9b846e7965e3.webp',
-                    'https://gw.alipayobjects.com/zos/antfincdn/x43I27A55%26/photo-1438109491414-7198515b166b.webp',
-                ]}
-            >
-                <Image
-                    width={200}
-                    src="https://gw.alipayobjects.com/zos/antfincdn/LlvErxo8H9/photo-1503185912284-5271ff81b9a8.webp"
-                />
-            </Image.PreviewGroup>
-            );
+            <Carousel autoplay={false} activeIndex={currentIndex}>
+                {images.map((imageUrl, index) => (
+                    <Image key={index} src={imageUrl} alt={`Slide ${index}`} />
+                ))}
+            </Carousel>
+            <div>
+                <button onClick={goToPrevSlide}>Previous</button>
+                <button onClick={goToNextSlide}>Next</button>
+            </div>
         </div>
     );
 };
 
-export default SinglePhoto;
+export default CarouselWithButtons;

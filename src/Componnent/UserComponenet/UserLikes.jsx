@@ -11,29 +11,26 @@ const UserLikes = () => {
     const {data, page, isLoading, error} = useSelector((state) => state.userLikes);
 
     const fetch=( )=>{
-        fetchUserLikes(username)
+       return  fetchUserLikes({username:username, page:page})
 
     }
 
-    useEffect(() => {
-        let memo =true
-        dispatch(fetchUserLikes(username))
-        return()=>{memo=false}
-    }, []);
 
-    console.log(data.map(item=>item.urls)," user like log")
+
+    // console.log(data," user like log")
 
     return (
 
         <div>
-            {/*{data&&*/}
-            {/*    data?.flat().map((item,index)=>*/}
-            {/*    <div>*/}
-            {/*        <img key={index} src={item?.urls?.small} />*/}
-            {/*    </div>*/}
-            {/*)}*/}
 
-            <Card data={data} page={page} isLoading={isLoading} error={error} fetch={fetch} />
+
+
+                <Card data={data} page={page} isLoading={isLoading} error={error} fetch={fetch} />
+
+
+
+
+
         </div>
 
     );

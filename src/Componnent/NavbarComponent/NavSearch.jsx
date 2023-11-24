@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {AutoComplete} from 'antd';
 import {useDispatch, useSelector} from 'react-redux';
-import {searchAuto, searchPhotos} from '../../Redux/SearchSlice.jsx';
+import { searchPhotos} from '../../Redux/SearchSlice.jsx';
 import {Link, useNavigate} from "react-router-dom";
 
 const {Option} = AutoComplete;
@@ -14,10 +14,10 @@ const NavSearch = () => {
 
 
     useEffect(() => {
+            const debounceTimer = setTimeout(() => {
+                dispatch(searchPhotos({query:query}));
+            }, 500);
 
-        const debounceTimer = setTimeout(() => {
-            dispatch(searchPhotos(query));
-        }, 500);
 
         return () => {
             clearTimeout(debounceTimer);

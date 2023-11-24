@@ -17,7 +17,7 @@ const navigate=useNavigate()
     return (
             <div className="md:mx-32 my-8">
 
-                <div className=" text-3xl md:text-5xl font-bold  p-4 ">{query}</div>
+                <div className=" text-xl md:text-5xl font-bold  p-4 ">{query}</div>
             <div className="relative flex items-center m-5">
                 <div className='opacity-50 cursor-pointer hover:opacity-100' onClick={slideLeft} > <img src="/previous.svg"/></div>
                 <div id='sliders' className='relative flex w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide'>

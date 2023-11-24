@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import Card from "../Componnent/card/Card.jsx";
 import {useDispatch, useSelector} from "react-redux";
 import {ApiData} from "../Redux/ApiSlice.jsx";
@@ -18,6 +18,10 @@ const Home = () => {
 
         <div className="container mx-auto">
             <BannerHome/>
+
+            {/*useMemo(()=> <Card data={data} page={page} isLoading={isLoading} error={error} fetch={fetch}/> ,page)*/}
+
+
             <Card data={data} page={page} isLoading={isLoading} error={error} fetch={fetch}/>
         </div>
 

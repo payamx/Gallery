@@ -40,7 +40,7 @@ const BannerHome = () => {
 
                 </div>
             {data?.slice(0, 4).map((item,index)=>
-                    <div className="flex justify-start items-center px-8">
+                    <div className="flex justify-start items-center px-8" key={index}>
                         <div  className="p-4">
                             <img className="w-14 h-14 rounded" src={item?.user?.profile_image?.small}/>
                         </div>

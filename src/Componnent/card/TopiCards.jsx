@@ -9,14 +9,14 @@ const TopiCards = () => {
     const dispatch=useDispatch()
     const {slug}=useParams();
     const {data, page, isLoading, error} = useSelector((state) => state.TopicsList);
-    console.log(data, "topic list fetch")
+    // console.log(data, "topic list fetch")
     const fetch=( )=>{
-        return  fetchTopicsPhoto(page,slug)
+        return  fetchTopicsPhoto({page: page, slug: slug})
     }
 
     useEffect(() => {
         let memo=true;
-        dispatch(fetchTopicsPhoto(slug,page));
+        dispatch(fetchTopicsPhoto({page: page, slug: slug}));
         return()=>{ memo=false}
     }, [slug]); // Include dispatch as a dependency
 

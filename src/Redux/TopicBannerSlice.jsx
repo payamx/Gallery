@@ -9,7 +9,7 @@ export const fetchTopicBanner =  createAsyncThunk('topic/topicBanner',async (slu
         }
 
     });
-    console.log(response,"banner topic slice")
+    // console.log(response,"banner topic slice")
     return response.data ;
 
 })

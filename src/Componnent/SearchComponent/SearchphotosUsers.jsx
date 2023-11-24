@@ -16,7 +16,7 @@ const SearchPhotosUsers = () => {
         return () => {
         };
     }, [query]);
-    console.log(userData,"users")
+    // console.log(userData,"users")
     return (
 
         <div>

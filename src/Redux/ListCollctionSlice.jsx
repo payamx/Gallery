@@ -8,7 +8,7 @@ export const fetchListCollection =  createAsyncThunk('api/listCollection',async 
             per_page:10
         }
     });
-    console.log(response,"list collection slice")
+    // console.log(response,"list collection slice")
     return response.data ;
 
 });

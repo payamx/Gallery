@@ -12,15 +12,15 @@ const SearchPhotosCard = () => {
     const {query}=useParams()
     const {data, page, isLoading, error} = useSelector((state) => state.searchPhotos);
     const dispatch=useDispatch();
-    console.log(data.results)
+    // console.log(typeof data)
 
     const fetch=()=>{
-     return    searchPhotos(query)
+     return    searchPhotos({query: query, page: page})
     }
 
     useEffect(() => {
         let memo = true
-        dispatch(searchPhotos(query))
+        dispatch(searchPhotos({query: query, page: page}))
 
         return () => {
             memo = false

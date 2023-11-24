@@ -2,51 +2,43 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {axiosClient} from "../Axios.js";
 import axios from "axios";
 
-export const searchPhotos = createAsyncThunk('search/photos', async (query) => {
+export const searchPhotos = createAsyncThunk('search/photos', async ({query, page}) => {
     const response = await axiosClient.get(`/search/photos`, {
             params: {
                 query: query,
-                page: 1,
-                per_page: 10,
+                page: page,
             },
-
         }
     );
-    console.log(response, "search slice photos")
+    // console.log(response, "search slice photos")
     return response.data;
 
 })
-export const searchAuto = createAsyncThunk('search/Auto', async (query) => {
-    const responseAuto = await axios.get(`https://unsplash.com/nautocomplete/${query}`);
-    console.log(responseAuto, "Auto")
-    return responseAuto.data;
 
-})
-export const searchCollections = createAsyncThunk('search/collections', async (query) => {
+
+export const searchCollections = createAsyncThunk('search/collections', async ({query, page}) => {
     const response = await axiosClient.get(`/search/collections`, {
             params: {
                 query: query,
-                page: 1,
-                per_page: 10,
+                page: page,
             },
 
         }
     );
-    console.log(response, "search slice collections")
+    // console.log(response, "search slice collections")
     return response.data;
 
 })
-export const searchUsers = createAsyncThunk('search/users', async (query) => {
+export const searchUsers = createAsyncThunk('search/users', async ({query, page}) => {
     const response = await axiosClient.get(`/search/users`, {
             params: {
                 query: query,
-                page: 1,
-                per_page: 10,
+                page: page,
             },
 
         }
     );
-    console.log(response, "search slice users")
+    // console.log(response, "search slice users")
     return response.data;
 
 })
@@ -82,20 +74,6 @@ export const searchList = createSlice({
             })
 
 
-            .addCase(searchAuto.pending, (state) => {
-                state.isLoading = true;
-                state.error = null;
-            })
-            .addCase(searchAuto.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.autoData = action.payload;
-
-            })
-            .addCase(searchAuto.rejected, (state, action) => {
-                state.isLoading = false;
-                state.error = action.error.message;
-            })
-
 
             .addCase(searchCollections.pending, (state) => {
                 state.isLoading = true;
@@ -119,7 +97,7 @@ export const searchList = createSlice({
             })
             .addCase(searchUsers.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.userData = action.payload;
+                state.userData =action.payload;
                 state.page += 1;
 
             })

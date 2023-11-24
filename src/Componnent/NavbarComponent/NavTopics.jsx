@@ -46,35 +46,6 @@ const NavTopics = () => {
                 <div className='opacity-50 cursor-pointer hover:opacity-100' onClick={slideRight} ><img src="/next.svg"/></div>
             </div>
 
-
-            {/*<div onClick={slideLeft}> bacj</div>*/}
-
-            {/*<div id='slider' className="flex justify-start items-center m-3  text-zinc-500 md:text-xl font-bold*/}
-            {/* divide-x-2 divide-black overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide	">*/}
-
-            {/*    <div className="flex justify-start items-center   space-x-2  ">*/}
-            {/*        <button className="p-2" onClick={() => navigate('/')}>*/}
-            {/*            Editoral*/}
-            {/*        </button>*/}
-            {/*        <button className="p-2" onClick={() => navigate('')}>*/}
-            {/*            Following*/}
-            {/*        </button>*/}
-            {/*    </div>*/}
-
-            {/*    <div className="flex justify-start items-center ms-2 flex-nowrap gradient-fade">*/}
-            {/*        {topics?.map((item, index) => (*/}
-            {/*            <button*/}
-            {/*                className="mx-4 py-4 flex  whitespace-nowrap"*/}
-            {/*                key={index}*/}
-            {/*                onClick={() => navigate(`/t/${item.slug}`)}>*/}
-            {/*                {item?.title}*/}
-            {/*            </button>*/}
-            {/*        ))}*/}
-            {/*    </div>*/}
-
-            {/*</div>*/}
-            {/*<div onClick={slideRight}> bacj</div>*/}
-
             <hr/>
 
 
