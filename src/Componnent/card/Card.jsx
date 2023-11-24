@@ -1,9 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import debounce from 'lodash.debounce';
-import {Popover} from "antd";
+import {Popover, Spin,Image} from "antd";
 import {Link, useNavigate} from "react-router-dom";
-import {Image} from 'antd';
 import {Blurhash, BlurhashCanvas} from "react-blurhash";
 import SinglePhoto from "../SinglePhoto.jsx";
 
@@ -101,7 +100,7 @@ const Card = ({data, page, fetch, isLoading, error, topics, query, username}) =>
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.offsetHeight;
 
-        if (scrollTop + windowHeight >= documentHeight - 500) {
+        if (scrollTop + windowHeight >= documentHeight - 600) {
 
             // Use the current page value in the dispatch function
             dispatch(fetch());
@@ -120,62 +119,67 @@ const Card = ({data, page, fetch, isLoading, error, topics, query, username}) =>
 
 // console.log(hoverIndex,"hover")
     return (
-        <div className=" container mx-auto flex  justify-center">
+        <>
+
+            {isLoading ?  <Spin className="flex justify-center" size={"large"}/> :
+            <div className=" container mx-auto flex  justify-center ">
+
+                <div className="flex justify-center mx-auto pb-24">
+
+                </div>
+
+                <div className="w-fit  my-5 mx-auto xs:columns-1 sm:columns-2 md:columns-3 lg:columns-3 gap-1 mb-96">
+                    {data &&
+                        data?.flat()?.map((item, itemIndex) => (
 
 
-            {/*{isLoading ? 'is loding' : ''}*/}
-            <div className="w-fit  my-5 mx-auto xs:columns-1 sm:columns-2 md:columns-3 lg:columns-3 gap-1 ">
-                {data &&
-                    data?.flat()?.map((item, itemIndex) => (
+                            <div key={itemIndex}>
+                                <div className="w-full my-3 px-2 break-inside-avoid  relative  "
+                                     onMouseOver={() => onHover(itemIndex)}
+                                     onMouseOut={onHoverOver}
+                                     onClick={handleClick}
+                                >
 
 
-                        <div key={itemIndex}>
-                            <div className="w-full my-3 px-2 break-inside-avoid  relative  "
-                                 onMouseOver={() => onHover(itemIndex)}
-                                 onMouseOut={onHoverOver}
-                                 onClick={handleClick}
-                            >
+                                    {
+                                        Blur && item?.blur_hash.length > 6 ?
+
+                                            <Blurhash
+                                                hash={item?.blur_hash}
+                                                width={400}
+                                                height={300}
+                                                resolutionX={32}
+                                                resolutionY={32}
+                                                punch={1}
+                                            />
+
+                                            :
+
+                                            <Image className=" rounded hover:brightness-75" src={item?.urls?.regular}/>
+
+                                    }
 
 
-                                {
-                                    Blur && item?.blur_hash.length > 6 ?
+                                    {hoverIndex && hoverIndex === itemIndex ? (
 
-                                        <Blurhash
-                                            hash={item?.blur_hash}
-                                            width={400}
-                                            height={300}
-                                            resolutionX={32}
-                                            resolutionY={32}
-                                            punch={1}
-                                        />
+                                        <div>
+                                            <div className="absolute  bottom-0 left-0 right-0 m-6">
+                                                <Popover
+                                                    placement="topLeft"
+                                                    content={content(item?.user?.profile_image?.medium, item?.user?.first_name,
+                                                        item?.user?.last_name, item?.user?.username, item?.urls?.small)}
+                                                    trigger="hover"
+                                                    open={open}
+                                                    onOpenChange={handleOpenChange}>
 
-                                        :
-
-                                        <Image className=" rounded hover:brightness-75" src={item?.urls?.regular}/>
-
-                                }
-
-
-                                {hoverIndex && hoverIndex === itemIndex ? (
-
-                                    <div>
-                                        <div className="absolute  bottom-0 left-0 right-0 m-6">
-                                            <Popover
-                                                placement="topLeft"
-                                                content={content(item?.user?.profile_image?.medium, item?.user?.first_name,
-                                                    item?.user?.last_name, item?.user?.username, item?.urls?.small)}
-                                                trigger="hover"
-                                                open={open}
-                                                onOpenChange={handleOpenChange}>
-
-                                                <div
-                                                    className="text-white text-center flex items-center justify-start hover:brightness-50 ">
-                                                    <img src={item?.user?.profile_image?.medium}
-                                                         className="inline-block h-12 w-12 rounded-full m-1"/>
-                                                    <div className="text-start">
+                                                    <div
+                                                        className="text-white text-center flex items-center justify-start hover:brightness-50 ">
+                                                        <img src={item?.user?.profile_image?.medium}
+                                                             className="inline-block h-12 w-12 rounded-full m-1"/>
+                                                        <div className="text-start">
                                                         <span
                                                             className="text-xl inline-block ">{item?.user?.username} </span>
-                                                        <span className="text-sm block">
+                                                            <span className="text-sm block">
                                                       {item?.user?.for_hire && (
                                                           <span className="text-sm block ">
                                                                   Available for hire
@@ -184,31 +188,35 @@ const Card = ({data, page, fetch, isLoading, error, topics, query, username}) =>
                                                                 </span>
                                                       )}
                                                 </span>
+                                                        </div>
+
                                                     </div>
 
-                                                </div>
+
+                                                </Popover>
 
 
-                                            </Popover>
-
+                                            </div>
 
                                         </div>
 
-                                    </div>
+                                    ) : ''
 
-                                ) : ''
+                                    }
 
-                                }
+
+                                </div>
 
 
                             </div>
+                        ))}
+                </div>
 
-
-                        </div>
-                    ))}
             </div>
+            }
 
-        </div>
+
+        </>
     );
 };
 
