@@ -4,8 +4,8 @@ import {axiosClient} from "../Axios.js";
 export const fetchListCollection =  createAsyncThunk('api/listCollection',async (page) => {
     const response = await axiosClient.get(`/collections`,{
         params:{
-            page:10,
-            per_page:10
+            page:page,
+            per_page:20
         }
     });
     // console.log(response,"list collection slice")

@@ -45,7 +45,7 @@ export const apiSlice = createSlice({
 
             .addCase(ApiData.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.data = [...state.data, action.payload];
+                state.data = [...state.data,... action.payload];
                 state.page += 1;
             })
 

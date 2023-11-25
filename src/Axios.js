@@ -8,6 +8,7 @@ export const axiosClient = axios.create(
         baseURL: `https://api.unsplash.com`,
         headers: {'Authorization': `Client-ID ${API_KEY}`}
     });
+
 // Create an interceptor to introduce a delay between requests
 axiosClient.interceptors.request.use(
     async (config) => {

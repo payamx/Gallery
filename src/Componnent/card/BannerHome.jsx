@@ -20,7 +20,7 @@ const BannerHome = () => {
 
     // console.log(data,"list collection page")
     return (
-        <div className="xs:flex-col md:flex justify-center items-end p-5 md:mx-32 my-8">
+        <div className="xs:flex-col md:flex justify-center items-end p-5 md:mx-20 my-8">
             <div className= " text-start grow   ">
                 <div className="text-6xl font-bold pl-6">Unsplash</div>
                 <div className=" text-xl md:text-2xl  my-10 pl-6 self-end leading-10 ">The internet’s source for visuals.<br/>
