@@ -209,7 +209,7 @@ const Card = ({data, page, fetch, isLoading, error, topics, query, username}) =>
                         ))}
 
                 </div>
-                {isLoading && <Spin className="flex justify-center pb-96" size={"large"}/>}
+                {isLoading && <Spin className="flex justify-center " size={"large"}/>}
             </div>
 
 
