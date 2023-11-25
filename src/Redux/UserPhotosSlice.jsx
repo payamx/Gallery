@@ -7,7 +7,6 @@ export const fetchUserPhotos =  createAsyncThunk('api/UserPhotos',async ({userna
         params:{
             page:page,
             username:username,
-            per_page:20,
         }
     })
     // console.log(response,"user photos slice ")
@@ -34,7 +33,7 @@ export const userPhotosSlice = createSlice({
 
             .addCase(fetchUserPhotos.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.data = [...state.data,action.payload];
+                state.data = [...state.data,...action.payload];
                 state.page += 1;
             })
 

@@ -21,14 +21,9 @@ const UserLikes = () => {
 
     return (
 
-        <div>
-
-
+        <div className="container  mx-auto">
 
                 <Card data={data} page={page} isLoading={isLoading} error={error} fetch={fetch} />
-
-
-
 
 
         </div>
