@@ -9,6 +9,7 @@ import {TopicsList} from "./UserTopicsSlice.jsx";
 import {searchList} from "./SearchSlice.jsx";
 import {TopicBanner} from "./TopicBannerSlice.jsx";
 import { listCollectionSlice} from "./ListCollctionSlice.jsx";
+import {SingleCollectionSlice} from "./SingleCollection.jsx";
 export const store = configureStore({
     reducer: {
         api: apiSlice.reducer,
@@ -19,7 +20,8 @@ export const store = configureStore({
         userPhotos:userPhotosSlice.reducer,
         userLikes:userPhotoLikesSlice.reducer,
         userCollection:userPhotoCollectionSlice.reducer,
-        listCollection:listCollectionSlice.reducer
+        listCollection:listCollectionSlice.reducer,
+        singleCollection:SingleCollectionSlice.reducer,
     },
 })
 

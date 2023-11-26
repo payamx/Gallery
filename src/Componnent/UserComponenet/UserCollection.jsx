@@ -25,7 +25,7 @@ const UserCollection = () => {
     // console.log(data,"collection")
 
     return (
-        <div>
+        <div className="container  mx-auto mt-24">
             <Collection data={data} fetch={fetch} page={page}/>
         </div>
 

@@ -15,7 +15,7 @@ const UserPhotos = () => {
 
 
     return (
-        <div className=" container  mx-auto">
+        <div className=" container  mx-auto mt-24">
             <Card data={data} page={page} isLoading={isLoading} error={error} fetch={fetch}/>
         </div>
 

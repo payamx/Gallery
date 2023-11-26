@@ -18,13 +18,11 @@ const Card = ({data, page, fetch, isLoading, error, topics, query, username}) =>
     useEffect(() => {
         let memo = true;
         dispatch(fetch());
-        setTimeout(() => setBlur(false), 2000)
+        setTimeout(() => setBlur(false), 1500)
         return () => {
             memo = false
         }
     }, []); // Include dispatch as a dependency
-
-
 
     const dispatchFunction = () => {
         dispatch(fetch())
@@ -122,10 +120,9 @@ const Card = ({data, page, fetch, isLoading, error, topics, query, username}) =>
 // console.log(hoverIndex,"hover")
     return (
         <>
+            <div className=" container mx-auto flex  justify-center ">
 
-            <div className=" container ">
-
-                <div className="w-fit  my-5 mx-auto xs:columns-1 sm:columns-2 md:columns-3 lg:columns-3 gap-1 mb-96 ">
+                <div className="w-fit  my-5 mx-auto xs:columns-1 sm:columns-2 md:columns-3 lg:columns-3 gap-1 mb-96">
                     {data &&
                         data?.flat()?.map((item, itemIndex) => (
 
@@ -152,7 +149,7 @@ const Card = ({data, page, fetch, isLoading, error, topics, query, username}) =>
 
                                             :
 
-                                            <Image className=" rounded hover:brightness-75" src={item?.urls?.regular}/>
+                                            <Image className=" rounded hover:brightness-75" src={item?.urls?.small}/>
 
                                     }
 
@@ -209,7 +206,7 @@ const Card = ({data, page, fetch, isLoading, error, topics, query, username}) =>
                         ))}
 
                 </div>
-                {isLoading && <Spin className="flex justify-center " size={"large"}/>}
+
             </div>
 
 

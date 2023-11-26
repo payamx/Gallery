@@ -14,6 +14,7 @@ import SearchPhotosUsers from "./Componnent/SearchComponent/SearchphotosUsers.js
 import SearchLayout from "./Pages/SearchLayout.jsx";
 import SearchPhotosCard from "./Componnent/SearchComponent/SearchPhotosCard.jsx";
 import CollectionPage from "./Componnent/CollectionPage.jsx";
+import SingleCollection from "./Componnent/SingleCollection.jsx";
 
 const App = () => {
 
@@ -34,6 +35,7 @@ const App = () => {
                          </Route>
 
                         <Route path="collections" element={<CollectionPage/>}/>
+                        <Route path="collection/:id" element={<SingleCollection/>}/>
 
                         <Route  element={<SearchLayout/>}  >
                             <Route  path="s/photos/:query"  element={<SearchPhotosCard/>}/>

@@ -7,6 +7,7 @@ export const searchPhotos = createAsyncThunk('search/photos', async ({query, pag
             params: {
                 query: query,
                 page: page,
+
             },
         }
     );
